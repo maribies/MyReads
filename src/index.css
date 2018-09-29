@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Passion+One');
 
 /* Font scale Augmented Four, base 16px */
-html {font-size: 1rem; }
+html {
+  font-size: 1rem;
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -9,7 +12,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   line-height: 1.45;
-  color: #333;
+  color: #383838;
 }
 
 p { margin-bottom: 1.3em; }
@@ -31,3 +34,11 @@ h3 { font-family: 'Passion One'; font-size: 1.999em; }
 h4 { font-family: 'Passion One'; font-size: 1.414em; }
 
 small, .font_small { font-size: 0.707em; }
+
+/* colors - https://colorhunt.co/palette/129370
+lightest purple : #dfe2fe
+light blue: #b1cbfa
+med purple: #8e98f5
+dark purple: #7874f2
+gray (text) for light backgroun: #383838
+*/
