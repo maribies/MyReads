@@ -10,7 +10,6 @@ import Read from './Read'
 class App extends Component {
   state = {
     query: '',
-    books: [],
     current: [],
     want: [],
     read: []
@@ -27,7 +26,12 @@ class App extends Component {
   }
 
   render() {
-    const books = this.props.books
+    const books = [
+      { title: "The Fountainhead", author: "Ayn Rand", cover: "https://via.placeholder.com/96x160", bookId: "1"},
+      { title: "Atlas Shrugged", author: "Ayn Rand", cover: "https://via.placeholder.com/96x160", bookId: "2"},
+      { title: "Harry Potter and the Philsophers Stone", author: "JK Rowling", cover: "https://via.placeholder.com/96x160", bookId: "3"},
+      { title: "Emotional Design", author: "Don Norman", cover: "https://via.placeholder.com/96x160", bookId: "4"},
+    ]
     return (
       <div className="App">
         <SearchBooks query={this.getQuery}>
@@ -35,9 +39,6 @@ class App extends Component {
         <CurrentReads></CurrentReads>
         <WantToRead></WantToRead>
         <Read></Read>
-        <Book book={this.state.books}></Book>
-        <Book book={this.state.books}></Book>
-        <Book book={this.state.books}></Book>
       </div>
     );
   }

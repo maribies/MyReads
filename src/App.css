@@ -29,27 +29,52 @@
 
 /*************** Shelves  *********************/
 .shelf {
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
+.current-reads {
+  border-bottom: .707rem solid #dfe2fe;
+}
+
+.shelf.current-reads {
+  border-bottom: .707rem solid #dfe2fe;
+}
+
+.want-to-read {
+  border-bottom: .707rem solid #b1cbfa;
+}
+
+.shelf.want-to-read {
+  border-bottom: .707rem solid #b1cbfa;
+}
+
+.read {
+  border-bottom: .707rem solid #8e98f5;
+}
+
+.shelf.read {
+  border-bottom: .707rem solid #8e98f5;
+}
 /*************** Books *********************/
 .book-info {
   width: fit-content;
   display: inline-block;
   text-align: center;
+  min-height: 17rem;
+  vertical-align: middle;
 }
 
 .book-image {
-  padding: 0 1rem;
-
+  padding: 1rem 1rem 0;
 }
 
 .book-title {
   padding: 0px 1rem;
   margin: 0;
+  max-width: 12rem;
 }
 
 .book-author {
-  padding: 0px 1rem;
+  padding: 0 1rem 1rem;
   margin: 0;
 }
