@@ -10,7 +10,7 @@ class CurrentReads extends Component {
       <div className='shelf-top current-reads'>
         <h3 className='current-reads'>Current Reads</h3>
         <div className='shelf'>
-          {this.props.books.map((book, index) => (
+          {this.props.books.map(book => (
           <Book book={book} key={book.bookId}></Book>
           ))}
         </div>

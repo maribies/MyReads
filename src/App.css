@@ -36,7 +36,8 @@
 .shelf {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  padding-bottom: 1rem;
 }
 
 .current-reads {
@@ -64,12 +65,13 @@
 }
 /*************** Books *********************/
 .book-info {
-  width: fit-content;
-  display: inline-block;
   text-align: center;
-  min-height: 17rem;
-  vertical-align: middle;
-  min-width: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 12em;
+  padding: .5rem 1rem;
 }
 
 .book-image {
@@ -79,9 +81,32 @@
 .book-title {
   margin: 0;
   max-width: 12rem;
+  padding: .707rem 0;
 }
 
 .book-author {
-  padding: 0 1rem 1rem;
   margin: 0;
+}
+
+.book-status {
+
+}
+
+.book-status-dropdown {
+  background-color: #7874f2;
+  transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #FFF;
+  color: #FFF;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.707em;
+}
+
+.book-status-dropdown:focus {
+  box-shadow: 0 0 8px #140F99;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #140F99;
 }
