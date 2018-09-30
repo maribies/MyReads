@@ -28,15 +28,22 @@
 }
 
 /*************** Shelves  *********************/
-.shelf {
+
+.shelf-top {
   padding: 0 1rem;
+}
+
+.shelf {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .current-reads {
   border-bottom: .707rem solid #dfe2fe;
 }
 
-.shelf.current-reads {
+.shelf-top.current-reads {
   border-bottom: .707rem solid #dfe2fe;
 }
 
@@ -44,7 +51,7 @@
   border-bottom: .707rem solid #b1cbfa;
 }
 
-.shelf.want-to-read {
+.shelf-top.want-to-read {
   border-bottom: .707rem solid #b1cbfa;
 }
 
@@ -52,7 +59,7 @@
   border-bottom: .707rem solid #8e98f5;
 }
 
-.shelf.read {
+.shelf-top.read {
   border-bottom: .707rem solid #8e98f5;
 }
 /*************** Books *********************/
@@ -62,6 +69,7 @@
   text-align: center;
   min-height: 17rem;
   vertical-align: middle;
+  min-width: 12rem;
 }
 
 .book-image {
@@ -69,7 +77,6 @@
 }
 
 .book-title {
-  padding: 0px 1rem;
   margin: 0;
   max-width: 12rem;
 }

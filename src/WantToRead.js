@@ -6,17 +6,14 @@ class WantToRead extends Component {
     want: []
   }
   render(){
-    const books = [
-      { title: "Guns, Germs, and Steel", author: "Jared Diamond", cover: "https://via.placeholder.com/96x160", bookId: "3"},
-      { title: "Emotional Design", author: "Don Norman", cover: "https://via.placeholder.com/96x160", bookId: "4"},
-      { title: "The Design of Everyday Things", author: "Don Norman", cover: "https://via.placeholder.com/96x160", bookId: "5"},
-    ]
     return (
-      <div className='shelf want-to-read'>
+      <div className='shelf-top want-to-read'>
         <h3 className='want-to-read'>Want to Read</h3>
-          {books.map(book => (
-          <Book book={book}></Book>
+        <div className='shelf'>
+          {this.props.books.map((book, index) => (
+          <Book book={book} key={book.bookId}></Book>
           ))}
+        </div>
       </div>
     )
   }

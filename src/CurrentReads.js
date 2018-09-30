@@ -6,16 +6,14 @@ class CurrentReads extends Component {
     current: []
   }
   render(){
-    const books = [
-      { title: "The Fountainhead", author: "Ayn Rand", cover: "https://via.placeholder.com/96x160", bookId: "1"},
-      { title: "Atlas Shrugged", author: "Ayn Rand", cover: "https://via.placeholder.com/96x160", bookId: "2"},
-    ]
     return (
-      <div className='shelf current-reads'>
+      <div className='shelf-top current-reads'>
         <h3 className='current-reads'>Current Reads</h3>
-        {books.map(book => (
-        <Book book={book}></Book>
-        ))}
+        <div className='shelf'>
+          {this.props.books.map((book, index) => (
+          <Book book={book} key={book.bookId}></Book>
+          ))}
+        </div>
       </div>
     )
   }
