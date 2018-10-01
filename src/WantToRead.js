@@ -11,7 +11,7 @@ class WantToRead extends Component {
         <h3 className='want-to-read'>Want to Read</h3>
         <div className='shelf'>
           {this.props.books.map((book, index) => (
-          <Book book={book} key={book.bookId}></Book>
+          <Book book={book} key={book.id}></Book>
           ))}
         </div>
       </div>

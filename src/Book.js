@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
+import * as BooksAPI from './BooksAPI';
 
 class Book extends Component {
   state = {
-    shelf: ''
+    shelf: '',
+    value: ''
+  }
+  //TODO: write a function to loop through array of authors if more than one and list all
+  handleChange = (event) => {
+    this.setState({value: event.target.value});
+    this.props.getShelf({ shelf: event.target.value});
   }
 
-  //TODO: write a function to loop through array of authors if more than one and list all
+  // updateShelf(book, shelf) {
+  //   BooksAPI.update(book, shelf);
+  // }
 
   render(){
     const book = this.props.book
@@ -16,18 +25,18 @@ class Book extends Component {
 
 
     return (
-          <div className='book-info' key={book.bookId}>
-            <img className='book-image' alt='{book.title} cover' src={book.imageLinks.smallThumbnail}></img>
+          <div className='book-info' key={book.id} shelf={this.state.value}>
+            <img className='book-image' alt='book cover' src={book.imageLinks.smallThumbnail}></img>
             <h4 className='book-title'>{book.title}</h4>
             <p className='book-author font-light'>{book.authors[0]}</p>
-            <div className='book-status'>
-              <select className='book-status-dropdown'>
-                <option value='Select Shelf'>Select Shelf</option>
-                <option value='Current Reads' shelf={this.state.shelf}>Current Reads</option>
-                <option value='Want to Read' shelf={this.state.shelf}>Want to Read</option>
-                <option value='Read' shelf={this.state.shelf}>Read</option>
+
+              <select className='book-status-dropdown' value={this.state.value} onChange={this.handleChange}>
+                <option value='None'>Select Shelf</option>
+                <option value='currentlyReading'>Current Reads</option>
+                <option value='wantToRead'>Want to Read</option>
+                <option value='read'>Read</option>
               </select>
-            </div>
+
           </div>
     )
   }

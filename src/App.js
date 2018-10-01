@@ -27,9 +27,9 @@ class App extends Component {
       <div className="App">
         <SearchBooks query={this.getQuery}>
         </SearchBooks>
-        <CurrentReads books={this.state.books}></CurrentReads>
-        <WantToRead books={this.state.books}></WantToRead>
-        <Read books={this.state.books}></Read>
+        <CurrentReads books={this.state.books} shelf={this.state.shelf}></CurrentReads>
+        <WantToRead books={this.state.books} shelf={this.state.shelf}></WantToRead>
+        <Read books={this.state.books} shelf={this.state.shelf}></Read>
       </div>
     );
   }

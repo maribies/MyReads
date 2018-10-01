@@ -3,7 +3,10 @@ import Book from './Book.js'
 
 class CurrentReads extends Component {
   state = {
-    current: []
+    shelf: '',
+  }
+  moveShelf = (value) => {
+    this.setState({shelf: value})
   }
   render(){
     return (
@@ -11,7 +14,7 @@ class CurrentReads extends Component {
         <h3 className='current-reads'>Current Reads</h3>
         <div className='shelf'>
           {this.props.books.map(book => (
-          <Book book={book} key={book.bookId}></Book>
+          <Book book={book} key={book.id} getShelf={this.moveShelf}></Book>
           ))}
         </div>
       </div>
