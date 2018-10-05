@@ -7,15 +7,10 @@ class ShelfSelector extends Component {
   //TODO: write a function to loop through array of authors if more than one and list all
   handleChange = (event) => {
     this.setState({shelf: event.target.value});
+    this.props.updateShelf(this.props.book, event.target.value)
   }
 
   render(){
-    const {books, book, updateShelf} = this.props
-
-    // if (!book) {
-    //   return <div className="search-message">Search for your next book by title or author to add to a shelf.</div>
-    // }
-
     return (
           <div className='shelf-selector'>
               <select className='book-status-dropdown' value={this.state.value} onChange={this.handleChange}>

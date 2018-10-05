@@ -3,7 +3,6 @@ import './App.css';
 import * as BooksAPI from './BooksAPI'
 import SearchBooks from './SearchBooks'
 import Shelves from './Shelves'
-import Book from './Book.js'
 
 class App extends Component {
   state = {
@@ -25,7 +24,8 @@ class App extends Component {
       book.shelf = shelf
       let updateBooks = this.state.books.filter( book => book.id !== book.id)
       updateBooks.push(book)
-      this.setState({ books: updateBooks })
+      this.setState(state => ({ books: state.books.concat([updateBooks])
+      }))
     })
   }
 

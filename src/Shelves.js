@@ -6,9 +6,9 @@ class Shelves extends Component {
   render(){
     const {books, updateShelf} = this.props
 
-    let currentlyReading = this.props.books.filter(book => book.shelf == 'currentlyReading')
-    let read = this.props.books.filter(book => book.shelf == 'read')
-    let wantToRead = this.props.books.filter(book => book.shelf == 'wantToRead')
+    let currentlyReading = this.props.books.filter(book => book.shelf === 'currentlyReading')
+    let read = this.props.books.filter(book => book.shelf === 'read')
+    let wantToRead = this.props.books.filter(book => book.shelf === 'wantToRead')
 
     return (
       <div className='bookshelf'>
@@ -25,7 +25,7 @@ class Shelves extends Component {
           <h3 className='want-to-read'>Want to Read</h3>
           <div className='shelf'>
             {wantToRead.map((book) => (
-            <Book book={ book } books={ books } key={ book.id } updateShelf={ updateShelf }>
+            <Book book={ book } books={ books } key={ book.id } updateShelf={ updateShelf }></Book>
             ))}
           </div>
         </div>
@@ -34,7 +34,7 @@ class Shelves extends Component {
           <h3 className='read'>Read</h3>
           <div className='shelf'>
             {read.map((book) => (
-            <Book book={ book } books={ books } key={ book.id } updateShelf={ updateShelf }>
+            <Book book={ book } books={ books } key={ book.id } updateShelf={ updateShelf }></Book>
             ))}
           </div>
         </div>
