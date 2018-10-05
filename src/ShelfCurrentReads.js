@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import Book from './Book.js'
 
 class CurrentReads extends Component {
-  state = {
-    shelf: '',
-  }
-  moveShelf = (value) => {
-    this.setState({shelf: value})
-  }
   render(){
+    const books = this.props
+    let currentlyReading = this.props.books.filter(book => book.shelf == 'currentlyReading')
+
     return (
       <div className='shelf-top current-reads'>
         <h3 className='current-reads'>Current Reads</h3>
         <div className='shelf'>
-          {this.props.books.map(book => (
-          <Book book={book} key={book.id} getShelf={this.moveShelf}></Book>
+          {currentlyReading.map((book) => (
+            <Book book={book} key={book.id}></Book>
           ))}
         </div>
       </div>

@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 import * as BooksAPI from './BooksAPI'
-import SearchBooks from './SearchBooks.js'
-import CurrentReads from './CurrentReads'
-import WantToRead from './WantToRead'
-import Read from './Read'
+import SearchBooks from './SearchBooks'
+import CurrentReads from './ShelfCurrentReads'
+import WantToRead from './ShelfWantToRead'
+import Read from './ShelfRead'
+import Book from './Book.js'
 
 class App extends Component {
   state = {
     query: '',
-    shelf: [],
+    shelf: ['currentlyReading', 'wantToRead', 'read'],
     books: []
   }
   componentDidMount(){
@@ -27,9 +28,9 @@ class App extends Component {
       <div className="App">
         <SearchBooks query={this.getQuery}>
         </SearchBooks>
-        <CurrentReads books={this.state.books} shelf={this.state.shelf}></CurrentReads>
-        <WantToRead books={this.state.books} shelf={this.state.shelf}></WantToRead>
-        <Read books={this.state.books} shelf={this.state.shelf}></Read>
+        <CurrentReads books={this.state.books}></CurrentReads>
+        <WantToRead books={this.state.books}></WantToRead>
+        <Read books={this.state.books}></Read>
       </div>
     );
   }
