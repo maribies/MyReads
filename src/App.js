@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import * as BooksAPI from './BooksAPI'
 import SearchBooks from './SearchBooks'
-import CurrentReads from './ShelfCurrentReads'
-import WantToRead from './ShelfWantToRead'
-import Read from './ShelfRead'
+import Shelves from './Shelves'
 import Book from './Book.js'
 
 class App extends Component {
   state = {
     query: '',
-    shelf: ['currentlyReading', 'wantToRead', 'read'],
     books: []
   }
   componentDidMount(){
@@ -23,14 +20,21 @@ class App extends Component {
     this.setState({ query })
   }
 
+  updateShelf = ( book, shelf ) => {
+    BooksAPI.update( book, shelf ).then(res => {
+      book.shelf = shelf
+      let updateBooks = this.state.books.filter( book => book.id !== book.id)
+      updateBooks.push(book)
+      this.setState({ books: updateBooks })
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <SearchBooks query={this.getQuery}>
         </SearchBooks>
-        <CurrentReads books={this.state.books}></CurrentReads>
-        <WantToRead books={this.state.books}></WantToRead>
-        <Read books={this.state.books}></Read>
+        <Shelves books={this.state.books} updateShelf={this.updateShelf}></Shelves>
       </div>
     );
   }
