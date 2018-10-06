@@ -1,6 +1,7 @@
-/*************** Header and Search Bar  *********************/
+/*************** Header and Search Bar/Button  *********************/
 .contain-books {
-  padding-top: 4em;
+  padding-top: 3em;
+  padding-bottom: 3em;
 }
 
 .title {
@@ -25,6 +26,44 @@
 .search-message {
   padding: 1rem;
   text-align: center;
+}
+
+.to-shelves {
+  text-decoration: none;
+  color: #140F99;
+  display: inline-block;
+  padding: 1rem;
+}
+
+.to-shelves-container {
+  text-align: center;
+}
+
+.add-books-btn {
+  background-color: #7874f2;
+  font-family: 'Open Sans', sans-serif;
+  color: #FFF;
+  font-size: 1.414em;
+  border-radius: .707rem;
+  padding: .5rem 1rem;
+}
+
+.add-books-btn:focus {
+  box-shadow: 0 0 8px #140F99;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #140F99;
+}
+
+.add-books-btn-link {
+  width: fit-content;
+  text-decoration: none;
+}
+
+.btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 /*************** Shelves  *********************/

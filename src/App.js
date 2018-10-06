@@ -8,7 +8,8 @@ import Shelves from './Shelves'
 class App extends Component {
   state = {
     query: '',
-    books: []
+    books: [],
+    screen: 'bookshelf'
   }
   componentDidMount(){
     BooksAPI.getBooks().then((books) => {
@@ -33,9 +34,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SearchBooks query={this.getQuery}>
-        </SearchBooks>
-        <Shelves books={this.state.books} updateShelf={this.updateShelf}></Shelves>
+        <Route path="/search" render={() => (
+          <SearchBooks
+            query={this.getQuery}
+            onNavigate={() => {
+                this.setState({ screen : 'bookshelf'})
+            }}
+          />
+        )}/>
+        <Route exact path="/" render={() => (
+          <Shelves
+            books={this.state.books}
+            updateShelf={this.updateShelf}
+            onNavigate={() => {
+                this.setState({ screen : 'search'})
+            }}
+          />
+        )}/>
       </div>
     );
   }
