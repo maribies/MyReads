@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Book from './Book'
 
 class SearchBooks extends Component {
   state = {
@@ -8,6 +9,7 @@ class SearchBooks extends Component {
 
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
+    this.props.onSearch(query)
   }
 
   clearQuery = () => {
@@ -16,6 +18,14 @@ class SearchBooks extends Component {
 
   render(){
     const { query } = this.props.query
+    const { queriedBooks, books, updateShelf } = this.props
+
+    let showingBooks
+    if (queriedBooks.length > 0) {
+      showingBooks = queriedBooks
+    } else {
+      showingBooks = books
+    }
 
     return (
       <div className='contain-books'>
@@ -27,8 +37,14 @@ class SearchBooks extends Component {
           </form>
 
         </div>
-        <div className="to-shelves-container">  
+        <div className="to-shelves-container">
           <Link className="to-shelves" to="/">Back to Bookshelf</Link>
+        </div>
+
+        <div className="results-container">
+          {showingBooks.map((book) => (
+              <Book book={ book } books={ books } key={ book.id } updateShelf={ updateShelf }></Book>
+          ))}
         </div>
       </div>
     )

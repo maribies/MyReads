@@ -4,12 +4,14 @@ import './App.css';
 import * as BooksAPI from './BooksAPI'
 import SearchBooks from './SearchBooks'
 import Shelves from './Shelves'
+import Book from './Book'
 
 class App extends Component {
   state = {
     query: '',
     books: [],
-    screen: 'bookshelf'
+    screen: 'bookshelf',
+    queriedBooks: [],
   }
   componentDidMount(){
     BooksAPI.getBooks().then((books) => {
@@ -30,6 +32,12 @@ class App extends Component {
       }))
     })
   }
+  // search the books- if query matches author, category, title, return those books
+  searchBooks = (query) => {
+    BooksAPI.search( query ).then(res => {
+      this.setState(state => ({ queriedBooks: res}))
+    })
+  }
 
   render() {
     return (
@@ -37,10 +45,15 @@ class App extends Component {
         <Route path="/search" render={() => (
           <SearchBooks
             query={this.getQuery}
+            onSearch={this.searchBooks}
+            queriedBooks={this.state.queriedBooks}
+            books={this.state.books}
+            updateShelf={this.updateShelf}
             onNavigate={() => {
                 this.setState({ screen : 'bookshelf'})
             }}
           />
+
         )}/>
         <Route exact path="/" render={() => (
           <Shelves

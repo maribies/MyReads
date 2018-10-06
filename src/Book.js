@@ -6,7 +6,7 @@ class Book extends Component {
   //TODO: write a function to loop through array of authors if more than one and list all
 
   render(){
-    const {books, book, updateShelf} = this.props
+    const {books, book, updateShelf, queriedBooks} = this.props
 
     // if (!book) {
     //   return <div className="search-message">Search for your next book by title or author to add to a shelf.</div>
