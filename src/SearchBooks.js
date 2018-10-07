@@ -21,10 +21,14 @@ class SearchBooks extends Component {
     const { queriedBooks, books, updateShelf } = this.props
 
     let showingBooks
-    if (queriedBooks.length > 0) {
+    let results
+    if (!queriedBooks) {
+      showingBooks = []
+    } else if (queriedBooks.length >= 0) {
       showingBooks = queriedBooks
     } else {
-      showingBooks = books
+      showingBooks = []
+      results = "Sorry! No Results Found. See Current Library Below."
     }
 
     return (
@@ -41,7 +45,9 @@ class SearchBooks extends Component {
           <Link className="to-shelves" to="/">Back to Bookshelf</Link>
         </div>
 
-        <div className="results-container">
+        <p className="results-message">{ results }</p>
+
+        <div className="results-container shelf">
           {showingBooks.map((book) => (
               <Book book={ book } books={ books } key={ book.id } updateShelf={ updateShelf }></Book>
           ))}

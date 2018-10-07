@@ -5,7 +5,9 @@ class SearchButton extends Component {
   render(){
     return (
       <div className="btn-container">
-        <button className="add-books-btn">Search & Add Books</button>
+        <Link className="add-books-btn-link" to="/search">
+          <button className="add-books-btn">Search & Add Books</button>
+        </Link>
       </div>
     )
   }

@@ -35,7 +35,7 @@
   padding: 1rem;
 }
 
-.to-shelves-container {
+.to-shelves-container, .results-message {
   text-align: center;
 }
 
@@ -67,7 +67,6 @@
 }
 
 /*************** Shelves  *********************/
-
 .shelf-top {
   padding: 0 1rem;
 }
@@ -102,6 +101,7 @@
 .shelf-top.read {
   border-bottom: .707rem solid #8e98f5;
 }
+
 /*************** Books *********************/
 .book-info {
   text-align: center;
@@ -125,10 +125,10 @@
 
 .book-author {
   margin: 0;
-}
-
-.book-status {
-
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 10rem;
+  padding-bottom: .707rem;
 }
 
 .book-status-dropdown {

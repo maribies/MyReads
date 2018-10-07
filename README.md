@@ -24,3 +24,4 @@ For reference to font scales - http://type-scale.com/
 Fonts - https://fonts.google.com/specimen/Passion+One?selection.family=Open+Sans|Passion+One
 For aid in planning & thinking - https://reactjs.org/docs/thinking-in-react.html
 React Router - https://reacttraining.com/react-router/
+Font Awesome - https://fontawesome.com/icons?d=gallery

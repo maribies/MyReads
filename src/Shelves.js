@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Book from './Book'
-import { Link } from 'react-router-dom'
 import SearchButton from './SearchButton'
 
 class Shelves extends Component {
@@ -15,9 +14,9 @@ class Shelves extends Component {
     return (
       <div className="contain-books">
         <h1 className='title'>MyReads Library</h1>
-        <Link className="add-books-btn-link" to="/search">
-         <SearchButton></SearchButton>
-        </Link>
+
+        <SearchButton></SearchButton>
+
         <div className='bookshelf'>
           <div className='shelf-top current-reads'>
             <h3 className='current-reads'>Current Reads</h3>

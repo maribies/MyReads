@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import './App.css';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBookOpen } from '@fortawesome/free-solid-svg-icons'
 import * as BooksAPI from './BooksAPI'
 import SearchBooks from './SearchBooks'
 import Shelves from './Shelves'
-import Book from './Book'
+
+library.add(faBookOpen)
 
 class App extends Component {
   state = {
@@ -32,7 +36,7 @@ class App extends Component {
       }))
     })
   }
-  // search the books- if query matches author, category, title, return those books
+  // search the books
   searchBooks = (query) => {
     BooksAPI.search( query ).then(res => {
       this.setState(state => ({ queriedBooks: res}))
