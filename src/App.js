@@ -32,7 +32,7 @@ class App extends Component {
       book.shelf = shelf
       let updateBooks = this.state.books.filter( book => book.id !== book.id)
       updateBooks.push(book)
-      this.setState(state => ({ books: state.books.concat([updateBooks])
+      this.setState(state => ({ books: state.books.concat([updateBooks[0]])
       }))
     })
   }

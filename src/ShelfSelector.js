@@ -18,6 +18,7 @@ class ShelfSelector extends Component {
                 <option value='currentlyReading'>Current Reads</option>
                 <option value='wantToRead'>Want to Read</option>
                 <option value='read'>Read</option>
+                <option value='remove'>Remove</option>
               </select>
           </div>
     )
