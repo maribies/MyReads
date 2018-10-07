@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import escapeRegExp from 'escape-string-regexp'
 import Book from './Book'
 
 class SearchBooks extends Component {
@@ -7,9 +8,9 @@ class SearchBooks extends Component {
     query: ''
   }
 
-  updateQuery = (query) => {
-    this.setState({ query: query.trim() })
-    this.props.onSearch(query)
+  updateQuery = (checkQuery) => {
+    this.setState({ query: checkQuery })
+    this.props.onSearch(checkQuery)
   }
 
   clearQuery = () => {
@@ -19,6 +20,11 @@ class SearchBooks extends Component {
   render(){
     const { query } = this.props.query
     const { queriedBooks, books, updateShelf } = this.props
+
+    if (query) {
+      let checkQuery = new RegExp(escapeRegExp(query), 'i')
+      checkQuery.trim();
+    }
 
     let showingBooks
     let results
