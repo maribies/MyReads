@@ -4,7 +4,9 @@ Is a required assessment for the Udacity Front-End Nanodegree certification. It 
 
 ## About
 
-This application is to display a 'bookshelf' with three 'shelves' of books - currently reading, want to read, and read. The user searches for books from the [API] library (https://reactnd-books-api.udacity.com/) and then adds them or moves them to and from the desired shelves.
+This application is to display a 'bookshelf' with three 'shelves' of books - currently reading, want to read, and read. The user searches for books from the [API] library (https://reactnd-books-api.udacity.com/) on the search page and then adds them to the desired shelf. The user can also move them to and from the desired shelves on the bookshelf page.
+
+Please note that only certain search terms work with this API. Please see those in the file SearchTerms.md.
 
 Created with Create React App - (https://github.com/facebook/create-react-app/)
 
