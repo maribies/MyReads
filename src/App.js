@@ -35,7 +35,6 @@ class App extends Component {
     if (newBooks.length > 0) {
       newBooks.push(updateBook)
     }
-    console.log(this.state.books)
     this.setState(state => ({books: newBooks}))
   }
 
@@ -50,7 +49,7 @@ class App extends Component {
       <Route path="/search" render={() => (<SearchBooks query={this.getQuery} onSearch={this.searchBooks} queriedBooks={this.state.queriedBooks} books={this.state.books} updateShelf={this.updateShelf} onNavigate={() => {
             this.setState({screen: 'bookshelf'})
           }}/>)}/>
-      <Route exact="exact" path="/" render={() => (<Shelves books={this.state.books} updateShelf={this.updateShelf} onNavigate={() => {
+      <Route exact path="/" render={() => (<Shelves books={this.state.books} updateShelf={this.updateShelf} onNavigate={() => {
             this.setState({screen: 'search'})
           }}/>)}/>
     </div>);
