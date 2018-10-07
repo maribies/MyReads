@@ -27,15 +27,16 @@ class App extends Component {
     this.setState({query})
   }
 
-  updateShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(res => {
-      book.shelf = shelf
-      let updateBooks = this.state.books.filter(book => book.id !== book.id)
-      updateBooks.push(book)
-      this.setState(state => ({
-        books: state.books.concat([updateBooks[0]])
-      }))
-    })
+  updateShelf = (updateBook, updateShelf) => {
+    BooksAPI.update(updateBook, updateShelf)
+    updateBook.shelf = updateShelf
+    let updateBooks = this.state.books.filter((book) => book.id === updateBook.id)
+    let newBooks = this.state.books.filter((book) => book.id !== updateBook.id)
+    if (newBooks.length > 0) {
+      newBooks.push(updateBook)
+    }
+    console.log(this.state.books)
+    this.setState(state => ({books: newBooks}))
   }
 
   searchBooks = (query) => {
