@@ -15,11 +15,23 @@ class App extends Component {
     query: '',
     books: [],
     screen: 'bookshelf',
-    queriedBooks: []
+    queriedBooks: [],
+    shelves: '',
   }
   componentDidMount() {
     BooksAPI.getBooks().then((books) => {
       this.setState({books})
+      let getShelves = this.state.books.map((book) => book.shelf)
+      let getBookId = this.state.books.map((book) => book.id)
+      let getShelvesId = getShelves.map(function (shelf, i) { return [shelf, getBookId[i]]})
+      let getCurrentlyReading = getShelvesId.filter((item) => item[0] === "currentlyReading")
+      let getRead = getShelvesId.filter((item) => item[0] === "read")
+      let getWantToRead = getShelvesId.filter((item) => item[0] === "wantToRead")
+      let currentlyReading = getCurrentlyReading.map((item) => item[1])
+      let read = getRead.map((item) => item[1])
+      let wantToRead = getWantToRead.map((item) => item[1])
+      let shelvesOnLoad = {'currentlyReading': currentlyReading, 'wantToRead': wantToRead, 'read' : read}
+      this.setState(state => ({shelves: shelvesOnLoad}))
     })
   }
 
@@ -28,28 +40,31 @@ class App extends Component {
   }
 
   updateShelf = (updateBook, updateShelf) => {
-    BooksAPI.update(updateBook, updateShelf)
     updateBook.shelf = updateShelf
-    let updateBooks = this.state.books.filter((book) => book.id === updateBook.id)
+    this.setState(state => ({book: {shelf: updateShelf}}))
     let newBooks = this.state.books.filter((book) => book.id !== updateBook.id)
     if (newBooks.length > 0) {
       newBooks.push(updateBook)
     }
     this.setState(state => ({books: newBooks}))
+    BooksAPI.update(updateBook, updateShelf).then((res) => {
+      this.setState(state => ({shelves: res}))
+      console.log(res)
+    })
   }
 
   searchBooks = (query) => {
-    BooksAPI.search(query).then(res => {
+    BooksAPI.search(query).then((res) => {
       this.setState(state => ({queriedBooks: res}))
     })
   }
 
   render() {
     return (<div className="App">
-      <Route path="/search" render={() => (<SearchBooks query={this.getQuery} onSearch={this.searchBooks} queriedBooks={this.state.queriedBooks} books={this.state.books} updateShelf={this.updateShelf} onNavigate={() => {
+      <Route path="/search" render={() => (<SearchBooks query={this.getQuery} onSearch={this.searchBooks} queriedBooks={this.state.queriedBooks} books={this.state.books} updateShelf={this.updateShelf} shelves={this.state.shelves} onNavigate={() => {
             this.setState({screen: 'bookshelf'})
           }}/>)}/>
-      <Route exact path="/" render={() => (<Shelves books={this.state.books} updateShelf={this.updateShelf} onNavigate={() => {
+        <Route exact path="/" render={() => (<Shelves books={this.state.books} updateShelf={this.updateShelf} shelves={this.state.shelves} shelf={this.state.shelf} onNavigate={() => {
             this.setState({screen: 'search'})
           }}/>)}/>
     </div>);

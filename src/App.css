@@ -66,6 +66,10 @@
   justify-content: center;
 }
 
+.results-container.shelf {
+  justify-content: center;
+}
+
 /*************** Shelves  *********************/
 .shelf-top {
   padding: 0 1rem;
@@ -131,6 +135,8 @@
   padding-bottom: .707rem;
 }
 
+/*************** Book Selector *********************/
+
 .book-status-dropdown {
   background-color: #7874f2;
   transition: all 0.30s ease-in-out;
@@ -148,4 +154,15 @@
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
   border: 1px solid #140F99;
+}
+
+.shelf-selector label {
+  margin: 0px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.707em;
+}
+
+.shelf-selector {
+  display: flex;
+  flex-direction: column;
 }

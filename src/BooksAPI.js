@@ -19,7 +19,7 @@ const headers = {
 
 export const getBooks = () => fetch(`${api}/books`, {headers}).then(res => res.json()).then(data => data.books)
 
-export const getId = (bookId) => fetch(`${api}/books/${bookId}`, {headers}).then(res => res.json()).then(data => data.books)
+export const getId = (bookId) => fetch(`${api}/books/${bookId}`, {headers}).then(res => res.json()).then(data => data.book)
 
 export const search = (query) => fetch(`${api}/search`, {
   method: 'POST',

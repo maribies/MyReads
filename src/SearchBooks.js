@@ -19,7 +19,7 @@ class SearchBooks extends Component {
 
   render() {
     const {query} = this.props.query
-    const {queriedBooks, books, updateShelf} = this.props
+    const {queriedBooks, books, updateShelf, shelves} = this.props
 
     if (query) {
       let checkQuery = new RegExp(escapeRegExp(query), 'i')
@@ -53,7 +53,7 @@ class SearchBooks extends Component {
       <p className="results-message">{results}</p>
 
       <div className="results-container shelf">
-        {showingBooks.map((book) => (<Book book={book} books={books} key={book.id} updateShelf={updateShelf}></Book>))}
+        {showingBooks.map((book) => (<Book book={book} key={book.id} updateShelf={updateShelf} shelves={shelves} id={book.id}></Book>))}
       </div>
     </div>)
   }
