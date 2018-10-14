@@ -17,24 +17,34 @@ const headers = {
 // PUT /books/:id { shelf }
 // POST /search { query, maxResults }
 
-export const getBooks = () => fetch(`${api}/books`, {headers}).then(res => res.json()).then(data => data.books)
+export const getBooks = () =>
+  fetch(`${api}/books`, { headers })
+  .then(res => res.json())
+  .then(data => data.books)
 
-export const getId = (bookId) => fetch(`${api}/books/${bookId}`, {headers}).then(res => res.json()).then(data => data.book)
+export const getId = (bookId) =>
+  fetch(`${api}/books/${bookId}`, { headers })
+  .then(res => res.json())
+  .then(data => data.book)
 
-export const search = (query) => fetch(`${api}/search`, {
+export const search = ( query ) =>
+  fetch(`${api}/search`, {
   method: 'POST',
   headers: {
     ...headers,
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({query})
-}).then(res => res.json()).then(data => data.books)
+})
+  .then(res => res.json())
+  .then(data => data.books)
 
-export const update = (book, shelf) => fetch(`${api}/books/${book.id}`, {
+export const update = ( book, shelf ) =>          fetch(`${api}/books/${book.id}`, {
   method: 'PUT',
   headers: {
-    ...headers,
-    'Content-Type': 'application/json'
+  ...headers,
+  'Content-Type': 'application/json'
   },
-  body: JSON.stringify({shelf})
-}).then(res => res.json())
+  body: JSON.stringify({ shelf })
+  })
+  .then(res => res.json())

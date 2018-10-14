@@ -7,6 +7,7 @@ import {faBookOpen} from '@fortawesome/free-solid-svg-icons'
 import * as BooksAPI from './BooksAPI'
 import SearchBooks from './SearchBooks'
 import Shelves from './Shelves'
+import SearchButton from './SearchButton'
 
 library.add(faBookOpen)
 
@@ -16,22 +17,16 @@ class App extends Component {
     books: [],
     screen: 'bookshelf',
     queriedBooks: [],
-    shelves: '',
+    showError: false,
   }
   componentDidMount() {
     BooksAPI.getBooks().then((books) => {
       this.setState({books})
-      let getShelves = this.state.books.map((book) => book.shelf)
-      let getBookId = this.state.books.map((book) => book.id)
-      let getShelvesId = getShelves.map(function (shelf, i) { return [shelf, getBookId[i]]})
-      let getCurrentlyReading = getShelvesId.filter((item) => item[0] === "currentlyReading")
-      let getRead = getShelvesId.filter((item) => item[0] === "read")
-      let getWantToRead = getShelvesId.filter((item) => item[0] === "wantToRead")
-      let currentlyReading = getCurrentlyReading.map((item) => item[1])
-      let read = getRead.map((item) => item[1])
-      let wantToRead = getWantToRead.map((item) => item[1])
-      let shelvesOnLoad = {'currentlyReading': currentlyReading, 'wantToRead': wantToRead, 'read' : read}
-      this.setState(state => ({shelves: shelvesOnLoad}))
+    })
+    .catch(error => {
+      this.setState({
+        showError: true
+      })
     })
   }
 
@@ -49,7 +44,6 @@ class App extends Component {
     this.setState(state => ({books: newBooks}))
     BooksAPI.update(updateBook, updateShelf).then((res) => {
       this.setState(state => ({shelves: res}))
-      console.log(res)
     })
   }
 
@@ -59,14 +53,39 @@ class App extends Component {
     })
   }
 
+  changeScreen = screen => {
+    if (screen !== this.state.screen) {
+      this.setState({ screen })
+    }
+    return;
+  }
+
   render() {
-    return (<div className="App">
-      <Route path="/search" render={() => (<SearchBooks query={this.getQuery} onSearch={this.searchBooks} queriedBooks={this.state.queriedBooks} books={this.state.books} updateShelf={this.updateShelf} shelves={this.state.shelves} onNavigate={() => {
-            this.setState({screen: 'bookshelf'})
-          }}/>)}/>
-        <Route exact path="/" render={() => (<Shelves books={this.state.books} updateShelf={this.updateShelf} shelves={this.state.shelves} shelf={this.state.shelf} onNavigate={() => {
-            this.setState({screen: 'search'})
-          }}/>)}/>
+    return (
+      <div className="App">
+        <Route path="/search" render={() => (
+          <SearchBooks
+            query={this.getQuery}
+            onSearch={this.searchBooks}
+            queriedBooks={this.state.queriedBooks}
+            books={this.state.books}
+            updateShelf={this.updateShelf}
+            getId={this.getId}
+            onNavigate={() => this.changeScreen('bookshelf')}
+          />
+        )}/>
+        <Route exact path="/" render={() => (
+          <div className="contain-books">
+            <h1 className='title'>MyReads Library</h1>
+            <SearchButton></SearchButton>
+            <Shelves
+              books={this.state.books}
+              updateShelf={this.updateShelf}
+              shelf={this.state.shelf}
+              onNavigate={() => this.changeScreen('search')}
+            />
+          </div>
+        )}/>
     </div>);
   }
 }
